@@ -1,4 +1,4 @@
-package com.kcaco.designpattern.行为模式.策略模式.优惠卷示例;
+package com.kcaco.designpattern.行为型.策略模式.优惠卷示例;
 
 import java.math.BigDecimal;
 

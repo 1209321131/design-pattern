@@ -1,7 +1,7 @@
-package com.kcaco.designpattern.行为模式.策略模式.优惠卷示例;
+package com.kcaco.designpattern.行为型.策略模式.优惠卷示例;
 
-import com.kcaco.designpattern.行为模式.策略模式.优惠卷示例.service.ICouponDiscount;
-import com.kcaco.designpattern.行为模式.策略模式.优惠卷示例.service.impl.ZJCouponDiscount;
+import com.kcaco.designpattern.行为型.策略模式.优惠卷示例.service.ICouponDiscount;
+import com.kcaco.designpattern.行为型.策略模式.优惠卷示例.service.impl.ZJCouponDiscount;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;

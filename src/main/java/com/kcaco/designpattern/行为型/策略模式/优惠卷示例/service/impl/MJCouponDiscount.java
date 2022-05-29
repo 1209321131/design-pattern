@@ -1,6 +1,6 @@
-package com.kcaco.designpattern.行为模式.策略模式.优惠卷示例.service.impl;
+package com.kcaco.designpattern.行为型.策略模式.优惠卷示例.service.impl;
 
-import com.kcaco.designpattern.行为模式.策略模式.优惠卷示例.service.ICouponDiscount;
+import com.kcaco.designpattern.行为型.策略模式.优惠卷示例.service.ICouponDiscount;
 
 import java.math.BigDecimal;
 import java.util.Map;
