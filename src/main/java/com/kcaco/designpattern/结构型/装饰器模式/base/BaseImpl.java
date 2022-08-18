@@ -1,4 +1,4 @@
-package com.kcaco.designpattern.结构型.装饰者;
+package com.kcaco.designpattern.结构型.装饰器模式.base;
 
 public class BaseImpl extends Base {
     
