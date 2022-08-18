@@ -1,5 +1,6 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -30,7 +31,7 @@ public class FreeTimeCalculator extends AbstractCalculator<OrderInfo> {
      */
     private final Integer freeTime;
 
-    private Optional<BigDecimal> payItem = Optional.empty();
+    private BigDecimal payItem;
 
     public FreeTimeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, Integer freeTime) {
         super(feeCalculate, unique);
@@ -50,7 +51,7 @@ public class FreeTimeCalculator extends AbstractCalculator<OrderInfo> {
         // 如果免费时长未超
         if (freeTime > hasFreeTime) {
             currentPay.put(FeeItemType.SERVICE_FEE, serviceFee);
-            this.payItem = Optional.of(serviceFee);
+            this.payItem = serviceFee;
         }
         return currentPay;
     }
@@ -58,10 +59,10 @@ public class FreeTimeCalculator extends AbstractCalculator<OrderInfo> {
     @Override
     protected Map<FeeItemType, List<PayItem>> currentPayItemMap() {
         Map<FeeItemType, List<PayItem>> payItemMap = Maps.newHashMap();
-        if (payItem.isPresent()) {
+        if (ObjectUtil.isNotNull(payItem)) {
             List<PayItem> payItemList = Lists.newArrayList();
 
-            FreeTimePayItem freeTimePayItem = new FreeTimePayItem(payItem.get(), PayType.ACTIVITY, PayGroup.VIRTUAL_PROPERTY);
+            FreeTimePayItem freeTimePayItem = new FreeTimePayItem(payItem, PayType.ACTIVITY, PayGroup.VIRTUAL_PROPERTY);
             payItemList.add(freeTimePayItem);
             payItemMap.put(FeeItemType.SERVICE_FEE, payItemList);
         }

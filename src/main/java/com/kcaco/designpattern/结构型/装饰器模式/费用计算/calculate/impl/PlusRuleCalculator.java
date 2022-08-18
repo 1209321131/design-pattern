@@ -1,6 +1,7 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.impl;
 
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -35,7 +36,7 @@ public class PlusRuleCalculator extends AbstractCalculator<OrderInfo> {
      */
     private UserService.UserInfo userInfo;
 
-    private Optional<BigDecimal> payMoney = Optional.empty();
+    private BigDecimal payMoney;
 
     public PlusRuleCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, BigDecimal discount) {
         super(feeCalculate, unique);
@@ -56,7 +57,7 @@ public class PlusRuleCalculator extends AbstractCalculator<OrderInfo> {
             if (NumberUtil.isGreater(serviceFee, BigDecimal.ZERO)) {
                 BigDecimal ductAmount = NumberUtil.sub(serviceFee, NumberUtil.mul(discount, serviceFee));
                 map.put(FeeItemType.SERVICE_FEE, ductAmount);
-                this.payMoney = Optional.of(ductAmount);
+                this.payMoney = ductAmount;
             }
         }
         return map;
@@ -65,13 +66,14 @@ public class PlusRuleCalculator extends AbstractCalculator<OrderInfo> {
     @Override
     protected Map<FeeItemType, List<PayItem>> currentPayItemMap() {
         Map<FeeItemType, List<PayItem>> maps = Maps.newHashMap();
-        if (payMoney.isPresent()) {
+        if (ObjectUtil.isNotNull(payMoney)) {
             List<PayItem> list = Lists.newArrayList();
-            PlusPayItem plusPayItem = new PlusPayItem(payMoney.get(), PayType.PLUS, PayGroup.VIRTUAL_PROPERTY);
+            PlusPayItem plusPayItem = new PlusPayItem(payMoney, PayType.PLUS, PayGroup.VIRTUAL_PROPERTY);
             plusPayItem.setPlusNo(userInfo.getPlusNo());
             list.add(plusPayItem);
             maps.put(FeeItemType.SERVICE_FEE, list);
         }
         return maps;
     }
+
 }

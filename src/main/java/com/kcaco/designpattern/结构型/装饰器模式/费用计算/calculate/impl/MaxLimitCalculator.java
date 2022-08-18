@@ -1,6 +1,7 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.impl;
 
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.AbstractCalculator;
@@ -22,7 +23,7 @@ public class MaxLimitCalculator extends AbstractCalculator<OrderInfo> {
 
     private final BigDecimal maxAmount;
 
-    private Optional<BigDecimal> limitDeductAmount = Optional.empty();
+    private BigDecimal limitDeductAmount;
 
     public MaxLimitCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, BigDecimal maxAmount) {
         super(feeCalculate, unique);
@@ -35,7 +36,7 @@ public class MaxLimitCalculator extends AbstractCalculator<OrderInfo> {
         Map<FeeItemType, BigDecimal> maps = Maps.newHashMap();
         if (NumberUtil.isGreater(left.get(FeeItemType.SERVICE_FEE), maxAmount)) {
             maps.put(FeeItemType.SERVICE_FEE, NumberUtil.sub(left.get(FeeItemType.SERVICE_FEE), maxAmount));
-            this.limitDeductAmount = Optional.of(NumberUtil.sub(left.get(FeeItemType.SERVICE_FEE), maxAmount));
+            this.limitDeductAmount = NumberUtil.sub(left.get(FeeItemType.SERVICE_FEE), maxAmount);
         }
         return maps;
     }
@@ -43,9 +44,9 @@ public class MaxLimitCalculator extends AbstractCalculator<OrderInfo> {
     @Override
     protected Map<FeeItemType, List<PayItem>> currentPayItemMap() {
         Map<FeeItemType, List<PayItem>> map = Maps.newHashMap();
-        if (limitDeductAmount.isPresent()) {
+        if (ObjectUtil.isNotNull(limitDeductAmount)) {
             List<PayItem> list = Lists.newArrayList();
-            MaxLimitPayItem maxLimitPayItem = new MaxLimitPayItem(limitDeductAmount.get(), PayType.LIMIT, PayGroup.VIRTUAL_PROPERTY);
+            MaxLimitPayItem maxLimitPayItem = new MaxLimitPayItem(limitDeductAmount, PayType.LIMIT, PayGroup.VIRTUAL_PROPERTY);
             list.add(maxLimitPayItem);
             map.put(FeeItemType.SERVICE_FEE, list);
         }

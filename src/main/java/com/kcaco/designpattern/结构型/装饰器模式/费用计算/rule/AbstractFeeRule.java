@@ -10,8 +10,19 @@ import java.math.BigDecimal;
 @ToString
 public class AbstractFeeRule implements FeeRule {
 
+    /**
+     * 值
+     */
     private final BigDecimal configValue;
+
+    /**
+     * 规则类型
+     */
     private final FeeRuleType ruleType;
+
+    /**
+     * 规则顺序
+     */
     private final Integer order;
 
     public AbstractFeeRule(BigDecimal configValue, FeeRuleType ruleType, Integer order) {
