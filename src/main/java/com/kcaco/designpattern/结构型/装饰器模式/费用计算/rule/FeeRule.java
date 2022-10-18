@@ -15,7 +15,7 @@ public interface FeeRule {
     /**
      * 获取规则类型
      */
-    FeeRuleType getRuleType();
+    FeeRuleTypeEnum getRuleType();
 
     /**
      * 规则的顺序

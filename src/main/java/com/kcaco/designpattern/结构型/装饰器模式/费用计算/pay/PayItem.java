@@ -3,7 +3,10 @@ package com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay;
 import java.math.BigDecimal;
 
 /**
- * 支付项
+ * Description: 支付项（抵扣项）
+ *
+ * @author kcaco
+ * @since 2022/10/18 9:16 PM
  */
 public interface PayItem {
 
@@ -15,12 +18,12 @@ public interface PayItem {
     /**
      * 支付类型
      */
-    PayType getPayType();
+    PayItemTypeEnum getPayType();
 
     /**
      * 支付分组
      */
-    PayGroup getPayGroup();
+    PayGroupEnum getPayGroup();
 
 
 }

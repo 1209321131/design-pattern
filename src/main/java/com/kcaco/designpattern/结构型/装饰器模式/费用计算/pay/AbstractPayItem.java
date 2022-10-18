@@ -12,14 +12,14 @@ public abstract class AbstractPayItem implements PayItem {
 
     private final BigDecimal money;
 
-    private final PayType payType;
+    private final PayItemTypeEnum payItemTypeEnum;
 
-    private final PayGroup payGroup;
+    private final PayGroupEnum payGroupEnum;
 
-    public AbstractPayItem(BigDecimal money, PayType payType, PayGroup payGroup) {
+    public AbstractPayItem(BigDecimal money, PayItemTypeEnum payItemTypeEnum, PayGroupEnum payGroupEnum) {
         this.money = money;
-        this.payType = payType;
-        this.payGroup = payGroup;
+        this.payItemTypeEnum = payItemTypeEnum;
+        this.payGroupEnum = payGroupEnum;
     }
 
     @Override
@@ -28,12 +28,12 @@ public abstract class AbstractPayItem implements PayItem {
     }
 
     @Override
-    public PayGroup getPayGroup() {
-        return this.payGroup;
+    public PayGroupEnum getPayGroup() {
+        return this.payGroupEnum;
     }
 
     @Override
-    public PayType getPayType() {
-        return this.payType;
+    public PayItemTypeEnum getPayType() {
+        return this.payItemTypeEnum;
     }
 }

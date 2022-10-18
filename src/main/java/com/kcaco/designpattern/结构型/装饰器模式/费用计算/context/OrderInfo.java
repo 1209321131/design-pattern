@@ -4,6 +4,13 @@ import java.math.BigDecimal;
 
 import lombok.Data;
 
+
+/**
+ * Description: 订单信息上下文
+ *
+ * @author kcaco
+ * @since 2022/10/18 8:56 PM
+ */
 @Data
 public class OrderInfo {
 

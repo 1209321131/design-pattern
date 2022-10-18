@@ -3,7 +3,10 @@ package com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee;
 import java.math.BigDecimal;
 
 /**
- * 费用项
+ * Description: 费用项
+ *
+ * @author kcaco
+ * @since 2022/10/18 8:45 PM
  */
 public interface FeeItem<T> {
 
@@ -15,7 +18,7 @@ public interface FeeItem<T> {
     /**
      * 费用类型
      */
-    FeeItemType getFeeItemType();
+    FeeItemTypeEnum getFeeItemType();
 
     /**
      * 订单原始信息

@@ -1,11 +1,17 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee;
 
 
+import lombok.AllArgsConstructor;
+
 import java.math.BigDecimal;
 
 /**
- * 抽象费用项
+ * Description: 抽象费用项
+ *
+ * @author kcaco
+ * @since 2022/10/18 8:47 PM
  */
+@AllArgsConstructor
 public class AbstractFeeItem<T> implements FeeItem<T> {
 
     /**
@@ -16,18 +22,12 @@ public class AbstractFeeItem<T> implements FeeItem<T> {
     /**
      * 费用类型
      */
-    private final FeeItemType itemType;
+    private final FeeItemTypeEnum itemType;
 
     /**
      * 金额
      */
     private final BigDecimal itemMoney;
-
-    public AbstractFeeItem(T orderInfo, FeeItemType itemType, BigDecimal itemMoney) {
-        this.orderInfo = orderInfo;
-        this.itemType = itemType;
-        this.itemMoney = itemMoney;
-    }
 
     @Override
     public BigDecimal getFeeItemOriginMoney() {
@@ -35,7 +35,7 @@ public class AbstractFeeItem<T> implements FeeItem<T> {
     }
 
     @Override
-    public FeeItemType getFeeItemType() {
+    public FeeItemTypeEnum getFeeItemType() {
         return itemType;
     }
 
