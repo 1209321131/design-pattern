@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.AbstractCalculator;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.AbstractFeeCalculator;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * 免费次数计算器
  */
-public class FreeTimesCalculator extends AbstractCalculator<OrderInfo> {
+public class FreeTimesFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
 
     /**
      * 免费次数
@@ -31,14 +31,14 @@ public class FreeTimesCalculator extends AbstractCalculator<OrderInfo> {
 
     private BigDecimal payItem;
 
-    public FreeTimesCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, Integer freeTimes) {
+    public FreeTimesFeeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, Integer freeTimes) {
         super(feeCalculate, unique);
         this.freeTimes = freeTimes;
     }
 
     @Override
-    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> left, OrderInfo orderInfo) {
-        BigDecimal serviceFee = left.get(FeeItemTypeEnum.SERVICE_FEE);
+    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderInfo orderInfo) {
+        BigDecimal serviceFee = currentWaitPayMoney.get(FeeItemTypeEnum.SERVICE_FEE);
 
         // 已使用的免费次数
         UserService userService = SpringUtil.getBean(UserService.class);

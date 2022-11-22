@@ -10,10 +10,19 @@ import java.math.BigDecimal;
 @ToString
 public abstract class AbstractPayItem implements PayItem {
 
+    /**
+     * 钱、时间等抽象
+     */
     private final BigDecimal money;
 
+    /**
+     * 支付类型
+     */
     private final PayItemTypeEnum payItemTypeEnum;
 
+    /**
+     * 支付分组
+     */
     private final PayGroupEnum payGroupEnum;
 
     public AbstractPayItem(BigDecimal money, PayItemTypeEnum payItemTypeEnum, PayGroupEnum payGroupEnum) {

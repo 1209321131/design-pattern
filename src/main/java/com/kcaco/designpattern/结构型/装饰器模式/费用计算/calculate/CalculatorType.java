@@ -1,8 +1,7 @@
-package com.kcaco.designpattern.结构型.装饰器模式.费用计算.factory;
+package com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate;
 
 
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.BaseEnum;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.base.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

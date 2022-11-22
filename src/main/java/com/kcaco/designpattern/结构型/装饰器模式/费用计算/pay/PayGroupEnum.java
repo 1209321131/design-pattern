@@ -1,6 +1,6 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay;
 
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.BaseEnum;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.base.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -20,7 +20,7 @@ public enum PayGroupEnum implements BaseEnum<PayGroupEnum> {
     PLATFORM_PAY(2, "平台支付"),
     VIRTUAL_PROPERTY(3, "虚拟资产"),
     BANK(4, "银行卡支付"),
-    COUPON(4, "优惠劵");
+    COUPON(5, "优惠劵");
 
     private final Integer code;
     private final String name;

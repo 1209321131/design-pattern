@@ -5,7 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.AbstractCalculator;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.AbstractFeeCalculator;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * plus 会员
  */
-public class PlusRuleCalculator extends AbstractCalculator<OrderInfo> {
+public class PlusRuleFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
 
     /**
      * 抵扣（打折）
@@ -37,7 +37,7 @@ public class PlusRuleCalculator extends AbstractCalculator<OrderInfo> {
 
     private BigDecimal payMoney;
 
-    public PlusRuleCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, BigDecimal discount) {
+    public PlusRuleFeeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, BigDecimal discount) {
         super(feeCalculate, unique);
         this.discount = discount;
     }

@@ -25,7 +25,8 @@ public interface FeeCalculate<T> {
     Map<FeeItemTypeEnum, List<PayItem>> payItemMap(List<FeeItem<T>> feeItemList);
 
     /**
-     * <待支付费用项,费用>map
+     * 每个费用项对应的实际待支付费用
+     * <费用项,实际待支付费用>map
      *
      * @param feeItemList 费用项集合
      * @return map<费用项, 金额>

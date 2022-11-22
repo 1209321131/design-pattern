@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * @since 2022/10/18 9:22 PM
  */
 public class FreeTimePayItem extends AbstractPayItem {
-    
+
     public FreeTimePayItem(BigDecimal money, PayItemTypeEnum payItemTypeEnum, PayGroupEnum payGroupEnum) {
         super(money, payItemTypeEnum, payGroupEnum);
     }

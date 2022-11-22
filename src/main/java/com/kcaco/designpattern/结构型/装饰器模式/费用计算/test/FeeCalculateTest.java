@@ -27,11 +27,26 @@ public class FeeCalculateTest {
 
     public void testFee() {
 
-        // 计算规则
+        // ---------------------------------------费用项---------------------------------------
+        // 订单信息
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setCarNo("dddd");
+        orderInfo.setParkTimes(3);
+        orderInfo.setUserId(4L);
+        orderInfo.setTotalMoney(new BigDecimal("30"));
+
+        // 停车费
+        ParkingFeeItem parkingFeeItem = new ParkingFeeItem(orderInfo);
+
+        List<FeeItem<OrderInfo>> feeItemList = Lists.newArrayList();
+        feeItemList.add(parkingFeeItem);
+
+
+        // ---------------------------------------计算规则---------------------------------------
         FreeTimesRule freeTimesRule = new FreeTimesRule(new BigDecimal(0), FeeRuleTypeEnum.FREE_TIMES, 3);
         FreeTimeRule freeTimeRule = new FreeTimeRule(new BigDecimal(1), FeeRuleTypeEnum.FREE_TIME, 1);
         PlusRule plusRule = new PlusRule(new BigDecimal("0.95"), FeeRuleTypeEnum.PLUS_RULE, 4);
-        MaxLimitRule maxLimitRule = new MaxLimitRule(new BigDecimal("1.4"), FeeRuleTypeEnum.MAX_LIMIT, 5);
+        MaxLimitRule maxLimitRule = new MaxLimitRule(new BigDecimal("30"), FeeRuleTypeEnum.MAX_LIMIT, 5);
 
         List<FeeRule> ruleList = Lists.newArrayList();
         ruleList.add(freeTimesRule);
@@ -39,18 +54,7 @@ public class FeeCalculateTest {
         ruleList.add(plusRule);
         ruleList.add(maxLimitRule);
 
-        // 费用项
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setCarNo("dddd");
-        orderInfo.setParkTimes(3);
-        orderInfo.setUserId(4L);
-        orderInfo.setTotalMoney(new BigDecimal("30"));
-
-        List<FeeItem<OrderInfo>> payItemList = Lists.newArrayList();
-        ParkingFeeItem parkingFeeItem = new ParkingFeeItem(orderInfo);
-        payItemList.add(parkingFeeItem);
-
-        // 动态组装计算器
+        // ---------------------------------------动态组装计算器---------------------------------------
         List<FeeRule> sortRules = ruleList.stream()
                 .sorted(Comparator.comparingInt(FeeRule::getOrder))
                 .collect(Collectors.toList());
@@ -59,24 +63,28 @@ public class FeeCalculateTest {
             calculate = CalculatorFactory.getFeeCalculateByRuleType(calculate, feeRule);
         }
 
-        Map<FeeItemTypeEnum, BigDecimal> waitPay = calculate.waitPayMoneyMap(payItemList);
+        // ---------------------------------------计算费用---------------------------------------
+        // 每个费用项对应的实际待支付费用
+        Map<FeeItemTypeEnum, BigDecimal> waitPay = calculate.waitPayMoneyMap(feeItemList);
         BigDecimal waitPayMoney = waitPay.get(FeeItemTypeEnum.SERVICE_FEE);
         System.out.println("费用总金额：" + orderInfo.getTotalMoney());
         System.out.println("待支付金额：" + waitPayMoney);
 
-        Map<FeeItemTypeEnum, List<PayItem>> map = calculate.payItemMap(payItemList);
+        // 每个费用项对应的抵扣明细
+        Map<FeeItemTypeEnum, List<PayItem>> map = calculate.payItemMap(feeItemList);
         System.out.println("-------费用项及其支付明细------");
         map.forEach((key, payItems) -> {
             System.out.println("费用项---------" + key.getName());
             System.out.println("费用项支付明细-------" + payItems.toString());
         });
 
+        // 支付明细
         List<PayItem> payList = map.get(FeeItemTypeEnum.SERVICE_FEE);
         System.out.println("----------支付明细---------");
         payList.forEach(payItem -> {
             System.out.println("抵扣费用：" + payItem.getMoney());
             System.out.println("抵扣类型：" + payItem.getPayType());
-            System.out.println("抵扣类型费种：" + payItem.getPayGroup());
+            System.out.println("抵扣类型分组：" + payItem.getPayGroup());
             System.out.println("");
         });
     }

@@ -1,6 +1,6 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee;
 
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.BaseEnum;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.base.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -22,9 +22,9 @@ public enum FeeResultEnum implements BaseEnum<FeeResultEnum> {
     AMOUNT_GREATER_ERROR(2001, "抵扣金额过大,超过需要抵扣的金额"),
 
     /**
-     * 计费项为空
+     * 费用项为空
      */
-    FEE_ITEM_EMPTY(2002, "计费项为空");
+    FEE_ITEM_EMPTY(2002, "费用项为空");
 
     private final Integer code;
     private final String name;

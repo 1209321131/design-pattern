@@ -1,13 +1,16 @@
 package com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay;
 
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.BaseEnum;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.base.BaseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Optional;
 
 /**
- * @author gim 2021/12/2 8:28 下午
+ * Description: 支付类型
+ *
+ * @author kcaco
+ * @since 2022/11/23 1:53 AM
  */
 @Getter
 @AllArgsConstructor

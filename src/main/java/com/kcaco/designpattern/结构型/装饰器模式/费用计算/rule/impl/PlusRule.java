@@ -13,13 +13,17 @@ import lombok.Setter;
  * @author kcaco
  * @since 2022/10/18 8:43 PM
  */
+@Getter
+@Setter
 public class PlusRule extends AbstractFeeRule {
 
-    @Setter
-    @Getter
+    /**
+     * 会有码
+     */
     private String cardNo;
 
     public PlusRule(BigDecimal configValue, FeeRuleTypeEnum ruleType, Integer order) {
         super(configValue, ruleType, order);
     }
+
 }

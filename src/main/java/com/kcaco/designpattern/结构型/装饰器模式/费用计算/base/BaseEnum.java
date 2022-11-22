@@ -1,4 +1,4 @@
-package com.kcaco.designpattern.结构型.装饰器模式.费用计算;
+package com.kcaco.designpattern.结构型.装饰器模式.费用计算.base;
 
 /**
  * @author Gim

@@ -14,8 +14,7 @@ import java.math.BigDecimal;
  */
 public class MaxLimitPayItem extends AbstractPayItem {
 
-  public MaxLimitPayItem(BigDecimal money, PayItemTypeEnum payItemTypeEnum,
-      PayGroupEnum payGroupEnum) {
-    super(money, payItemTypeEnum, payGroupEnum);
-  }
+    public MaxLimitPayItem(BigDecimal money, PayItemTypeEnum payItemTypeEnum, PayGroupEnum payGroupEnum) {
+        super(money, payItemTypeEnum, payGroupEnum);
+    }
 }

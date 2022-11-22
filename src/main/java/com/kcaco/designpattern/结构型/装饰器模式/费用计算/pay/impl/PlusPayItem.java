@@ -14,14 +14,18 @@ import lombok.Setter;
  * @author kcaco
  * @since 2022/10/18 9:22 PM
  */
+@Getter
+@Setter
 public class PlusPayItem extends AbstractPayItem {
 
-    @Setter
-    @Getter
+    /**
+     * 会员码
+     */
     private String plusNo;
 
-    @Setter
-    @Getter
+    /**
+     * 用户id
+     */
     private Long userId;
 
     public PlusPayItem(BigDecimal money, PayItemTypeEnum payItemTypeEnum, PayGroupEnum payGroupEnum) {
