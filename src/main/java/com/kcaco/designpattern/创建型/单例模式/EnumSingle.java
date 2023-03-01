@@ -3,7 +3,7 @@ package com.kcaco.designpattern.创建型.单例模式;
 
 
 /**
- * Description:
+ * Description: 枚举形式
  *
  * @author kcaco
  * @since 2022-11-23 23:54

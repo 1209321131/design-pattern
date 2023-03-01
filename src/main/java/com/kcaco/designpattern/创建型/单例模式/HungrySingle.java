@@ -9,7 +9,6 @@ package com.kcaco.designpattern.创建型.单例模式;
 public class HungrySingle {
     private HungrySingle() {
     }
-
     private static final HungrySingle HUNGRY_SINGLE = new HungrySingle();
 
     public static HungrySingle getInstance() {
