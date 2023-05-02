@@ -4,7 +4,7 @@ package com.kcaco.designpattern.行为型.责任链.common.base;
 import java.util.List;
 
 /**
- * Description:
+ * Description: 基础责任链接口
  *
  * @author kcaco
  * @since 2023-05-02 23:28

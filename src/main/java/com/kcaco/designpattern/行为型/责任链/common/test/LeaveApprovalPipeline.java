@@ -15,15 +15,15 @@ import java.util.List;
  * @author kcaco
  * @since 2023-05-03 00:49
  */
-public class LeaveApprovalPipeline implements BaseFilterPipeline<ApprovalInfo> {
+public class LeaveApprovalPipeline implements BaseFilterPipeline<LeaveApprovalInfo> {
     @Override
     public BizEnum getBizCode() {
         return BizEnum.LEAVE;
     }
 
     @Override
-    public List<BaseFilter<ApprovalInfo>> getFilterList() {
-        List<BaseFilter<ApprovalInfo>> filterList = new ArrayList<>();
+    public List<BaseFilter<LeaveApprovalInfo>> getFilterList() {
+        List<BaseFilter<LeaveApprovalInfo>> filterList = new ArrayList<>();
         // 主管
         filterList.add(new DirectorApprovalFilter());
         // 老板

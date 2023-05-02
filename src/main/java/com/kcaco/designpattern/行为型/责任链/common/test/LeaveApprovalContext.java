@@ -4,14 +4,15 @@ import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractB
 import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
 
 /**
- * Description:
+ * Description: 请求审批上下文
  *
  * @author kcaco
  * @since 2023-05-03 01:39
  */
-public class LeaveApprovalContext extends AbstractBaseContext<ApprovalInfo> {
+public class LeaveApprovalContext extends AbstractBaseContext<LeaveApprovalInfo> {
 
-    public LeaveApprovalContext(ApprovalInfo processModel, BizEnum bizEnum) {
+    public LeaveApprovalContext(LeaveApprovalInfo processModel, BizEnum bizEnum) {
         super(processModel, bizEnum);
     }
+
 }

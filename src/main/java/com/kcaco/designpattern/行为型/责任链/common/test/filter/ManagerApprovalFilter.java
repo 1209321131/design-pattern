@@ -3,19 +3,19 @@ package com.kcaco.designpattern.行为型.责任链.common.test.filter;
 import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractBaseContext;
 import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilter;
 import com.kcaco.designpattern.行为型.责任链.common.base.ResultModel;
-import com.kcaco.designpattern.行为型.责任链.common.test.ApprovalInfo;
+import com.kcaco.designpattern.行为型.责任链.common.test.LeaveApprovalInfo;
 
 /**
- * Description:
+ * Description: 老板审批
  *
  * @author kcaco
  * @since 2023-05-03 00:46
  */
-public class ManagerApprovalFilter implements BaseFilter<ApprovalInfo> {
+public class ManagerApprovalFilter implements BaseFilter<LeaveApprovalInfo> {
 
     @Override
-    public void doFilter(AbstractBaseContext<ApprovalInfo> context) {
-        ApprovalInfo processModel = context.getProcessModel();
+    public void doFilter(AbstractBaseContext<LeaveApprovalInfo> context) {
+        LeaveApprovalInfo processModel = context.getProcessModel();
 
         if (processModel.getReason().length() > 20) {
             System.out.println("老板审批通过");

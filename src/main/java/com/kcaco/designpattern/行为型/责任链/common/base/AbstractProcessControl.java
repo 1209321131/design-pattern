@@ -7,7 +7,7 @@ import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractB
 import java.util.List;
 
 /**
- * Description:
+ * Description: 抽象流程控制
  *
  * @author kcaco
  * @since 2023-05-02 23:57
