@@ -1,10 +1,10 @@
-package com.kcaco.designpattern.行为型.责任链.common.test;
+package com.kcaco.designpattern.行为型.责任链.common.请假示例;
 
 import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilter;
 import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
 import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilterPipeline;
-import com.kcaco.designpattern.行为型.责任链.common.test.filter.DirectorApprovalFilter;
-import com.kcaco.designpattern.行为型.责任链.common.test.filter.ManagerApprovalFilter;
+import com.kcaco.designpattern.行为型.责任链.common.请假示例.filter.DirectorApprovalFilter;
+import com.kcaco.designpattern.行为型.责任链.common.请假示例.filter.ManagerApprovalFilter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,15 +1,15 @@
-package com.kcaco.designpattern.行为型.责任链.common.test;
+package com.kcaco.designpattern.行为型.责任链.common.请假示例;
 
 import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractBaseContext;
 import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
 
 /**
- * Description:
+ * Description: 请假测试
  *
  * @author kcaco
  * @since 2023-05-03 00:44
  */
-public class TestCommon {
+public class LeaveApprovalTest {
 
     public static void main(String[] args) {
         LeaveApprovalInfo leaveApprovalInfo = new LeaveApprovalInfo();

@@ -1,4 +1,4 @@
-package com.kcaco.designpattern.行为型.责任链.common.test;
+package com.kcaco.designpattern.行为型.责任链.common.请假示例;
 
 import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractBaseContext;
 import com.kcaco.designpattern.行为型.责任链.common.base.AbstractProcessControl;
