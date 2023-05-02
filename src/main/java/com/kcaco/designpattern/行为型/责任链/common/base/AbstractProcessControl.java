@@ -2,7 +2,6 @@ package com.kcaco.designpattern.行为型.责任链.common.base;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.kcaco.designpattern.行为型.责任链.common.pipeline.BaseFilterPipeline;
 
 import java.util.List;
 
@@ -12,32 +11,18 @@ import java.util.List;
  * @author kcaco
  * @since 2023-05-02 23:57
  */
-public class ProcessControl<T extends ProcessModel> {
+public abstract class AbstractProcessControl<T extends ProcessModel> {
 
-    /**
-     * 执行流程
-     */
-    private final BaseFilterPipeline<T> baseFilterPipeline;
+    protected abstract AbstractBaseContext<T> process(AbstractBaseContext<T> context);
 
-    public ProcessControl(BaseFilterPipeline<T> baseFilterPipeline) {
-        this.baseFilterPipeline = baseFilterPipeline;
-    }
 
-    /**
-     * 执行责任链
-     *
-     * @param context 上下文
-     * @return 返回上下文内容
-     */
-    public BaseContext<T> process(BaseContext<T> context) {
+    protected AbstractBaseContext<T> defaultProcess(BaseFilterPipeline<T> baseFilterPipeline, AbstractBaseContext<T> context) {
         // 前置检查
-        preCheck(context);
+        preCheck(baseFilterPipeline, context);
 
         // 遍历流程节点
         List<BaseFilter<T>> processList = baseFilterPipeline.getFilterList();
         for (BaseFilter<T> businessProcess : processList) {
-            // todo 跳链
-
             // 执行业务逻辑
             businessProcess.doFilter(context);
 
@@ -57,16 +42,15 @@ public class ProcessControl<T extends ProcessModel> {
      *
      * @param context 执行上下文
      */
-    private void preCheck(BaseContext<T> context) {
+    public void preCheck(BaseFilterPipeline<T> baseFilterPipeline, AbstractBaseContext<T> context) {
         // 上下文
         if (ObjectUtil.isNull(context)) {
-            context = new BaseContext<>();
             context.setResponse(ResultModel.failed("上下文为空"));
             throw new RuntimeException(context.toString());
         }
 
         // 模板标识
-        BizEnum bizCode = context.getBizCode();
+        BizEnum bizCode = context.getBizEnum();
         if (ObjectUtil.isNull(bizCode)) {
             context.setResponse(ResultModel.failed("模板标识为空"));
             throw new RuntimeException(context.toString());
@@ -91,6 +75,5 @@ public class ProcessControl<T extends ProcessModel> {
             throw new RuntimeException(context.toString());
         }
     }
-
 
 }

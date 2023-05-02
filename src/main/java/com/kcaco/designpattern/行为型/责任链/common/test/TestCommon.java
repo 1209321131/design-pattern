@@ -1,8 +1,7 @@
 package com.kcaco.designpattern.行为型.责任链.common.test;
 
-import com.kcaco.designpattern.行为型.责任链.common.base.BaseContext;
+import com.kcaco.designpattern.行为型.责任链.common.base.AbstractBaseContext;
 import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
-import com.kcaco.designpattern.行为型.责任链.common.base.ProcessControl;
 
 /**
  * Description:
@@ -17,15 +16,11 @@ public class TestCommon {
         approvalInfo.setApplyPerson("kcaco");
         approvalInfo.setReason("我要加薪");
 
+        LeaveApprovalContext leaveApprovalContext = new LeaveApprovalContext(approvalInfo, BizEnum.LEAVE);
 
-        BaseContext<ApprovalInfo> approvalInfoBaseContext = new BaseContext<>();
-        approvalInfoBaseContext.setProcessModel(approvalInfo);
-        approvalInfoBaseContext.setBizCode(BizEnum.LEAVE);
-        approvalInfoBaseContext.setNeedBreak(false);
+        LeaveApprovalProcessControl leaveApprovalProcessControl = new LeaveApprovalProcessControl();
+        AbstractBaseContext<ApprovalInfo> process = leaveApprovalProcessControl.process(leaveApprovalContext);
 
-        LeaveApprovalPipeline leaveApprovalPipeline = new LeaveApprovalPipeline();
-        ProcessControl<ApprovalInfo> processControl = new ProcessControl<>(leaveApprovalPipeline);
-        BaseContext<ApprovalInfo> process = processControl.process(approvalInfoBaseContext);
         System.out.println(process.getResponse());
     }
 }

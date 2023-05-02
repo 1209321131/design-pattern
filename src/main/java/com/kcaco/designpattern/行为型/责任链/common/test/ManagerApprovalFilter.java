@@ -1,6 +1,6 @@
 package com.kcaco.designpattern.行为型.责任链.common.test;
 
-import com.kcaco.designpattern.行为型.责任链.common.base.BaseContext;
+import com.kcaco.designpattern.行为型.责任链.common.base.AbstractBaseContext;
 import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilter;
 import com.kcaco.designpattern.行为型.责任链.common.base.ResultModel;
 
@@ -13,7 +13,7 @@ import com.kcaco.designpattern.行为型.责任链.common.base.ResultModel;
 public class ManagerApprovalFilter implements BaseFilter<ApprovalInfo> {
 
     @Override
-    public void doFilter(BaseContext<ApprovalInfo> context) {
+    public void doFilter(AbstractBaseContext<ApprovalInfo> context) {
         ApprovalInfo processModel = context.getProcessModel();
 
         if (processModel.getReason().length() > 20) {

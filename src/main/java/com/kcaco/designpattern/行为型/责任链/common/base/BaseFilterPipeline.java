@@ -1,9 +1,5 @@
-package com.kcaco.designpattern.行为型.责任链.common.pipeline;
+package com.kcaco.designpattern.行为型.责任链.common.base;
 
-
-import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilter;
-import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
-import com.kcaco.designpattern.行为型.责任链.common.base.ProcessModel;
 
 import java.util.List;
 

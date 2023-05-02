@@ -13,6 +13,6 @@ public interface BaseFilter<T extends ProcessModel> {
      *
      * @param context 上下文
      */
-    void doFilter(BaseContext<T> context);
+    void doFilter(AbstractBaseContext<T> context);
 
 }
