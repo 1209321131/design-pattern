@@ -1,4 +1,4 @@
-package com.kcaco.designpattern.行为型.责任链;
+package com.kcaco.designpattern.行为型.责任链.简单示例;
 
 public class SecondAbstractFilter extends AbstractFilter {  //二面
     @Override
