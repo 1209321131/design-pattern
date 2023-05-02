@@ -9,7 +9,7 @@ import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderInfo;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderContext;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.mockbean.UserService;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayGroupEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayItem;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * plus 会员
  */
-public class PlusRuleFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
+public class PlusRuleFeeCalculator extends AbstractFeeCalculator<OrderContext> {
 
     /**
      * 抵扣（打折）
@@ -37,20 +37,20 @@ public class PlusRuleFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
 
     private BigDecimal payMoney;
 
-    public PlusRuleFeeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, BigDecimal discount) {
+    public PlusRuleFeeCalculator(FeeCalculate<OrderContext> feeCalculate, Unique unique, BigDecimal discount) {
         super(feeCalculate, unique);
         this.discount = discount;
     }
 
     @Override
-    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> left, OrderInfo orderInfo) {
+    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> left, OrderContext orderContext) {
         BigDecimal serviceFee = left.get(FeeItemTypeEnum.SERVICE_FEE);
 
         Map<FeeItemTypeEnum, BigDecimal> map = Maps.newHashMap();
 
         // 查询用户信息
         UserService userService = SpringUtil.getBean(UserService.class);
-        userInfo = userService.getUserInfo(orderInfo.getUserId());
+        userInfo = userService.getUserInfo(orderContext.getUserId());
 
         if (userInfo.isPlus()) {
             if (NumberUtil.isGreater(serviceFee, BigDecimal.ZERO)) {

@@ -12,7 +12,7 @@ import lombok.Data;
  * @since 2022/10/18 8:56 PM
  */
 @Data
-public class OrderInfo {
+public class OrderContext {
 
     /**
      * 车牌号

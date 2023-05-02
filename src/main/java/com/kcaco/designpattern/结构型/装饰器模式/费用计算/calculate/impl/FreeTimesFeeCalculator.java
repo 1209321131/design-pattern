@@ -8,7 +8,7 @@ import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderInfo;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderContext;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.mockbean.UserService;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayGroupEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayItem;
@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * 免费次数计算器
  */
-public class FreeTimesFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
+public class FreeTimesFeeCalculator extends AbstractFeeCalculator<OrderContext> {
 
     /**
      * 免费次数
@@ -31,18 +31,18 @@ public class FreeTimesFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
 
     private BigDecimal payItem;
 
-    public FreeTimesFeeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, Integer freeTimes) {
+    public FreeTimesFeeCalculator(FeeCalculate<OrderContext> feeCalculate, Unique unique, Integer freeTimes) {
         super(feeCalculate, unique);
         this.freeTimes = freeTimes;
     }
 
     @Override
-    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderInfo orderInfo) {
+    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderContext orderContext) {
         BigDecimal serviceFee = currentWaitPayMoney.get(FeeItemTypeEnum.SERVICE_FEE);
 
         // 已使用的免费次数
         UserService userService = SpringUtil.getBean(UserService.class);
-        Integer hasFreeTimes = userService.hasEnjoyFreeTimes(orderInfo.getUserId());
+        Integer hasFreeTimes = userService.hasEnjoyFreeTimes(orderContext.getUserId());
 
         Map<FeeItemTypeEnum, BigDecimal> currentPay = Maps.newHashMap();
 

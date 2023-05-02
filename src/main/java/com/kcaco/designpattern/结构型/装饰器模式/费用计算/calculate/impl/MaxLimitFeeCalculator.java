@@ -8,7 +8,7 @@ import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderInfo;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderContext;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayGroupEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayItem;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayItemTypeEnum;
@@ -18,19 +18,19 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-public class MaxLimitFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
+public class MaxLimitFeeCalculator extends AbstractFeeCalculator<OrderContext> {
 
     private final BigDecimal maxAmount;
 
     private BigDecimal limitDeductAmount;
 
-    public MaxLimitFeeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, BigDecimal maxAmount) {
+    public MaxLimitFeeCalculator(FeeCalculate<OrderContext> feeCalculate, Unique unique, BigDecimal maxAmount) {
         super(feeCalculate, unique);
         this.maxAmount = maxAmount;
     }
 
     @Override
-    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderInfo orderInfo) {
+    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderContext orderContext) {
         // 如果剩余的钱比限额大，那么大于限额的钱就是抵扣的钱
         Map<FeeItemTypeEnum, BigDecimal> maps = Maps.newHashMap();
         if (NumberUtil.isGreater(currentWaitPayMoney.get(FeeItemTypeEnum.SERVICE_FEE), maxAmount)) {

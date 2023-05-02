@@ -8,7 +8,7 @@ import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.Unique;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderInfo;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderContext;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.mockbean.UserService;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayGroupEnum;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayItem;
@@ -26,7 +26,7 @@ import java.util.Map;
  * @author kcaco
  * @since 2022/10/18 9:12 PM
  */
-public class FreeTimeFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
+public class FreeTimeFeeCalculator extends AbstractFeeCalculator<OrderContext> {
 
     /**
      * 免费时长
@@ -38,18 +38,18 @@ public class FreeTimeFeeCalculator extends AbstractFeeCalculator<OrderInfo> {
      */
     private BigDecimal payAccount;
 
-    public FreeTimeFeeCalculator(FeeCalculate<OrderInfo> feeCalculate, Unique unique, Integer freeTime) {
+    public FreeTimeFeeCalculator(FeeCalculate<OrderContext> feeCalculate, Unique unique, Integer freeTime) {
         super(feeCalculate, unique);
         this.freeTime = freeTime;
     }
 
     @Override
-    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderInfo orderInfo) {
+    protected Map<FeeItemTypeEnum, BigDecimal> currentDeductMap(Map<FeeItemTypeEnum, BigDecimal> currentWaitPayMoney, OrderContext orderContext) {
         BigDecimal serviceFee = currentWaitPayMoney.get(FeeItemTypeEnum.SERVICE_FEE);
 
         // 已使用的免费时长
         UserService userService = SpringUtil.getBean(UserService.class);
-        Integer hasFreeTime = userService.hasEnjoyFreeTime(orderInfo.getUserId());
+        Integer hasFreeTime = userService.hasEnjoyFreeTime(orderContext.getUserId());
 
         // 当前费用项及其抵扣金额
         Map<FeeItemTypeEnum, BigDecimal> currentPay = Maps.newHashMap();

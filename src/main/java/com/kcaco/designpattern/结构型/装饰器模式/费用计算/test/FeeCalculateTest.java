@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.calculate.FeeCalculate;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItem;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.FeeItemTypeEnum;
-import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderInfo;
+import com.kcaco.designpattern.结构型.装饰器模式.费用计算.context.OrderContext;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.factory.CalculatorFactory;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.fee.impl.ParkingFeeItem;
 import com.kcaco.designpattern.结构型.装饰器模式.费用计算.pay.PayItem;
@@ -29,16 +29,16 @@ public class FeeCalculateTest {
 
         // ---------------------------------------费用项---------------------------------------
         // 订单信息
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setCarNo("dddd");
-        orderInfo.setParkTimes(3);
-        orderInfo.setUserId(4L);
-        orderInfo.setTotalMoney(new BigDecimal("30"));
+        OrderContext orderContext = new OrderContext();
+        orderContext.setCarNo("dddd");
+        orderContext.setParkTimes(3);
+        orderContext.setUserId(4L);
+        orderContext.setTotalMoney(new BigDecimal("30"));
 
         // 停车费
-        ParkingFeeItem parkingFeeItem = new ParkingFeeItem(orderInfo);
+        ParkingFeeItem parkingFeeItem = new ParkingFeeItem(orderContext);
 
-        List<FeeItem<OrderInfo>> feeItemList = Lists.newArrayList();
+        List<FeeItem<OrderContext>> feeItemList = Lists.newArrayList();
         feeItemList.add(parkingFeeItem);
 
 
@@ -67,7 +67,7 @@ public class FeeCalculateTest {
         // 每个费用项对应的实际待支付费用
         Map<FeeItemTypeEnum, BigDecimal> waitPay = calculate.waitPayMoneyMap(feeItemList);
         BigDecimal waitPayMoney = waitPay.get(FeeItemTypeEnum.SERVICE_FEE);
-        System.out.println("费用总金额：" + orderInfo.getTotalMoney());
+        System.out.println("费用总金额：" + orderContext.getTotalMoney());
         System.out.println("待支付金额：" + waitPayMoney);
 
         // 每个费用项对应的抵扣明细
