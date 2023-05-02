@@ -1,5 +1,7 @@
 package com.kcaco.designpattern.行为型.责任链.common.base;
 
+import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractBaseContext;
+
 /**
  * Description: 业务处理
  *

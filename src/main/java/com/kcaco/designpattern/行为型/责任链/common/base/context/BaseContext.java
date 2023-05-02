@@ -1,6 +1,7 @@
-package com.kcaco.designpattern.行为型.责任链.common.base;
+package com.kcaco.designpattern.行为型.责任链.common.base.context;
 
 
+import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
 
 /**
  * Description:

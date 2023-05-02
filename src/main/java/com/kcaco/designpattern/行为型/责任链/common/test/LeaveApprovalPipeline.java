@@ -3,6 +3,8 @@ package com.kcaco.designpattern.行为型.责任链.common.test;
 import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilter;
 import com.kcaco.designpattern.行为型.责任链.common.base.BizEnum;
 import com.kcaco.designpattern.行为型.责任链.common.base.BaseFilterPipeline;
+import com.kcaco.designpattern.行为型.责任链.common.test.filter.DirectorApprovalFilter;
+import com.kcaco.designpattern.行为型.责任链.common.test.filter.ManagerApprovalFilter;
 
 import java.util.ArrayList;
 import java.util.List;

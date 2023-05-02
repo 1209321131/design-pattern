@@ -2,6 +2,7 @@ package com.kcaco.designpattern.行为型.责任链.common.base;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.kcaco.designpattern.行为型.责任链.common.base.context.AbstractBaseContext;
 
 import java.util.List;
 
@@ -13,9 +14,22 @@ import java.util.List;
  */
 public abstract class AbstractProcessControl<T extends ProcessModel> {
 
+    /**
+     * 自定义实现处理流程
+     *
+     * @param context 上下文
+     * @return 上下文
+     */
     protected abstract AbstractBaseContext<T> process(AbstractBaseContext<T> context);
 
 
+    /**
+     * 默认处理流程
+     *
+     * @param baseFilterPipeline 流程模板
+     * @param context            上下文
+     * @return 结果
+     */
     protected AbstractBaseContext<T> defaultProcess(BaseFilterPipeline<T> baseFilterPipeline, AbstractBaseContext<T> context) {
         // 前置检查
         preCheck(baseFilterPipeline, context);

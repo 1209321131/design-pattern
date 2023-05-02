@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.AllArgsConstructor;
 
 /**
- * Description:
+ * Description: 业务类型
  *
  * @author kcaco
  * @since 2023-05-02 22:23
