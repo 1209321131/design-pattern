@@ -1,8 +1,11 @@
-package com.kcaco.designpattern.创建型.建造者模式;
+package com.kcaco.designpattern.创建型.建造者模式.base;
 
 
 /**
- * 服务员
+ * Description: 具体建造者，这里就是服务员
+ *
+ * @author kcaco
+ * @since 2023/5/3 8:40 AM
  */
 public class Waiter implements Builder {
 

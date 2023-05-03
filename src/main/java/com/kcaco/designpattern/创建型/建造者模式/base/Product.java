@@ -1,9 +1,12 @@
-package com.kcaco.designpattern.创建型.建造者模式;
+package com.kcaco.designpattern.创建型.建造者模式.base;
 
 import lombok.Data;
 
 /**
- * 套餐
+ * Description: 产品，这里就是套餐
+ *
+ * @author kcaco
+ * @since 2023/5/3 8:40 AM
  */
 @Data
 public class Product {

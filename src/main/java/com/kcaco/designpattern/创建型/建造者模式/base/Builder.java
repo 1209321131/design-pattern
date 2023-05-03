@@ -1,8 +1,11 @@
-package com.kcaco.designpattern.创建型.建造者模式;
+package com.kcaco.designpattern.创建型.建造者模式.base;
 
 
 /**
- * 创建者
+ * Description: 抽象建造者类
+ *
+ * @author kcaco
+ * @since 2023/5/3 8:40 AM
  */
 public interface Builder {
 
