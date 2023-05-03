@@ -53,7 +53,7 @@ public class StaticInnerClassProduct {
          */
         private String play;
 
-        ProductBuilder() {
+        public ProductBuilder() {
         }
 
         public StaticInnerClassProduct.ProductBuilder eat(String eat) {

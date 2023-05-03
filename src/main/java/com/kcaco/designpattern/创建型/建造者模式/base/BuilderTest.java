@@ -1,6 +1,6 @@
 package com.kcaco.designpattern.创建型.建造者模式.base;
 
-public class testBuilder {
+public class BuilderTest {
 
 
     public static void main(String[] args) {
