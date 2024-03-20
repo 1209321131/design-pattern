@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.kcaco</groupId>
-    <artifactId>DesignPattern</artifactId>
+    <artifactId>design-pattern</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
